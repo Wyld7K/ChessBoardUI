@@ -13,11 +13,13 @@ import javax.swing.JPanel;
 public class IconPanel extends JPanel {
 
     private BufferedImage image;
+    private String imgSrc;
 
-    public IconPanel(Graphics g) {
+    public IconPanel(Graphics g, String imgSrc) {
+        this.imgSrc = imgSrc;
 
         try {
-            image = ImageIO.read(new File("src/bk.png"));
+            image = ImageIO.read(new File(imgSrc));
 
         } catch (IOException e) {
             // // TODO Auto-generated catch block
@@ -28,6 +30,7 @@ public class IconPanel extends JPanel {
     }
 
     public IconPanel printImg(Graphics g, int xPos, int yPos) {
+
         g.drawImage(image, xPos + 5, yPos, 100, 100, this);
         return this;
     }

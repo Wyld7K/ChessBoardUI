@@ -1,10 +1,15 @@
 import java.awt.Color;
+import java.util.ArrayList;
 import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 public class App extends JFrame {
+
+    // private ArrayList<String> imgSrcs = new ArrayList<String>({
+
+    // });
 
     public App() {
         getContentPane().setBackground(Color.WHITE);
@@ -37,8 +42,56 @@ public class App extends JFrame {
 
     }
 
+    public String getImgSrc(int row, int col) {
+        // Array of paths
+        switch (row) {
+            case 0:
+                if (col == 0)
+                    return "Images/br.png";
+                else if (col == 1)
+                    return "Images/bn.png";
+                else if (col == 2)
+                    return "Images/bb.png";
+                else if (col == 3)
+                    return "Images/bq.png";
+                else if (col == 4)
+                    return "Images/bk.png";
+                else if (col == 5)
+                    return "Images/bb.png";
+                else if (col == 6)
+                    return "Images/bn.png";
+                else if (col == 7)
+                    return "Images/br.png";
+            case 1:
+                return "Images/bp.png";
+            case 6:
+                return "Images/wp.png";
+            case 7:
+                if (col == 0)
+                    return "Images/wr.png";
+                else if (col == 1)
+                    return "Images/wn.png";
+                else if (col == 2)
+                    return "Images/wb.png";
+                else if (col == 3)
+                    return "Images/wq.png";
+                else if (col == 4)
+                    return "Images/wk.png";
+                else if (col == 5)
+                    return "Images/wb.png";
+                else if (col == 6)
+                    return "Images/wn.png";
+                else if (col == 7)
+                    return "Images/wr.png";
+
+        }
+        return "NULL";
+
+    }
+
     void drawRectangles(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+
         int xPos = 105;
         int yPos = 105;
         int cellGap = 105;
@@ -48,18 +101,20 @@ public class App extends JFrame {
             for (int col = 0; col < 8; col++) {
                 {
                     g2d.drawRect(xPos + row * cellGap, yPos + col * cellGap, cellSize, cellSize);
-                    // cc.paintComponent(g2d);
-                    IconPanel icon = new IconPanel(g).printImg(g2d, xPos + row * cellGap, yPos + col * cellGap);
 
                     if (row % 2 == 0) {
                         if (col % 2 != 0)
+                            // Fill Black
                             g2d.fillRect(xPos + row * cellGap, yPos + col * cellGap, cellSize, cellSize);
 
                     } else {
                         if (col % 2 == 0)
+                            // Fill Black
                             g2d.fillRect(xPos + row * cellGap, yPos + col * cellGap, cellSize, cellSize);
-
                     }
+                    IconPanel icon = new IconPanel(g, getImgSrc(row, col)).printImg(g2d, yPos + col * cellGap,
+                            xPos + row * cellGap);
+
                     // Change angle of drawing
                     // g2d.setColor(new Color(255, 255, 255));
 
