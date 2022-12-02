@@ -13,20 +13,23 @@ import javax.swing.JPanel;
 public class IconPanel extends JPanel {
 
     private BufferedImage image;
-    private ImageIcon img;
 
-    public IconPanel() {
-        img = new ImageIcon(IconPanel.class.getResource("wr.jpeg"));
-        this.image = new BufferedImage(img.getIconWidth(),
-                img.getIconHeight(),
-                BufferedImage.TYPE_INT_RGB);
+    public IconPanel(Graphics g) {
+
+        try {
+            image = ImageIO.read(new File("src/bk.png"));
+
+        } catch (IOException e) {
+            // // TODO Auto-generated catch block
+
+            e.printStackTrace();
+        }
+
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
-
+    public IconPanel printImg(Graphics g, int xPos, int yPos) {
+        g.drawImage(image, xPos, yPos, this);
+        return this;
     }
 
 }

@@ -48,11 +48,13 @@ public class App extends JFrame {
             for (int col = 0; col < 8; col++) {
                 {
                     g2d.drawRect(xPos + row * cellGap, yPos + col * cellGap, cellSize, cellSize);
-                    IconPanel icon = new IconPanel();
-                    icon.paintComponent(g2d);
+                    // cc.paintComponent(g2d);
+                    IconPanel icon = new IconPanel(g).printImg(g2d, xPos + row * cellGap, yPos + col * cellGap);
+
                     if (row % 2 == 0) {
                         if (col % 2 != 0)
                             g2d.fillRect(xPos + row * cellGap, yPos + col * cellGap, cellSize, cellSize);
+
                     } else {
                         if (col % 2 == 0)
                             g2d.fillRect(xPos + row * cellGap, yPos + col * cellGap, cellSize, cellSize);
