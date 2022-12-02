@@ -1,14 +1,14 @@
 import java.awt.Color;
 import java.util.ArrayList;
 import java.awt.*;
-
+import java.util.List;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 public class App extends JFrame {
 
     // private ArrayList<String> imgSrcs = new ArrayList<String>({
-
+    private List<IconPanel> icons = new ArrayList<>();
     // });
 
     public App() {
@@ -112,9 +112,11 @@ public class App extends JFrame {
                         // Fill Black
                         g2d.fillRect(yPos + col * cellGap, xPos + row * cellGap, cellSize, cellSize);
                 }
-                IconPanel icon = new IconPanel(g, getImgSrc(row, col)).printImg(g2d, yPos +
+
+                icons.add(new IconPanel(g, getImgSrc(row, col)).printImg(g2d, yPos +
                         col * cellGap,
-                        xPos + row * cellGap);
+                        xPos + row * cellGap));
+
             }
             // DO SOMETHING HERE
         }

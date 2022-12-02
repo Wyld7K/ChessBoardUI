@@ -16,6 +16,12 @@ public class IconPanel extends JPanel {
     private String imgSrc;
 
     public IconPanel(Graphics g, String imgSrc) {
+        pasteImage(imgSrc);
+    }
+
+    private void pasteImage(String imgSrc) {
+        if (imgSrc.equalsIgnoreCase("NULL"))
+            return;
         this.imgSrc = imgSrc;
 
         try {
@@ -24,9 +30,8 @@ public class IconPanel extends JPanel {
         } catch (IOException e) {
             // // TODO Auto-generated catch block
 
-            e.printStackTrace();
+            System.out.println(imgSrc);
         }
-
     }
 
     public IconPanel printImg(Graphics g, int xPos, int yPos) {
