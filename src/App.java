@@ -1,27 +1,48 @@
-import java.awt.Color;
-import java.util.ArrayList;
-import java.awt.*;
-import java.util.List;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Main Class
+ * Everything starts from here!
+ */
 public class App extends JFrame {
 
-    // private ArrayList<String> imgSrcs = new ArrayList<String>({
-    private List<IconPanel> icons = new ArrayList<>();
+
+    private final List<IconPanel> icons = new ArrayList<>();
     // });
 
+    /**
+     * Initialize board
+     */
     public App() {
+        // Initlizase variables
         getContentPane().setBackground(Color.WHITE);
         setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
+
+        // Start
         drawMovelList();
 
         // JImageComponent ic = new JImageComponent(myImageGoesHere);
         // imagePanel.add(ic);
 
+    }
+
+    // TODO: JPanel with movelist
+    // TODO: JPanel with playerBox
+    // TODO: Add Resign and offer-draw button
+    public static void main(String[] args) throws Exception {
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new App().setVisible(true);
+            }
+        });
     }
 
     public void drawMovelList() {
@@ -42,6 +63,13 @@ public class App extends JFrame {
 
     }
 
+    /**
+     * Get image source path
+     *
+     * @param row the board row
+     * @param col the board colum
+     * @return Image Source
+     */
     public String getImgSrc(int row, int col) {
         // Array of paths
         switch (row) {
@@ -90,6 +118,11 @@ public class App extends JFrame {
 
     }
 
+    /**
+     * Draw board in the background of the screen.
+     *
+     * @param g Graphics
+     */
     void drawRectangles(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
@@ -98,23 +131,28 @@ public class App extends JFrame {
         int cellGap = 105;
         int cellSize = 105;
 
+        // Loop through every spot on the board
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
+                // Draw initial borders around every spot on the board.
                 g2d.drawRect(xPos + row * cellGap, yPos + col * cellGap, cellSize, cellSize);
 
+                // Fill all Black squares.
                 if (row % 2 == 0) {
-                    if (col % 2 != 0)
-                        // Fill Black
+                    if (col % 2 != 0) {
+                        // Fill Black (1/2 of the board)
                         g2d.fillRect(yPos + col * cellGap, xPos + row * cellGap, cellSize, cellSize);
+                    }
 
                 } else {
                     if (col % 2 == 0)
-                        // Fill Black
+                        // Fill Black (1/2 of the board)
                         g2d.fillRect(yPos + col * cellGap, xPos + row * cellGap, cellSize, cellSize);
                 }
 
+                // Pastes image and stores the pasted image
                 icons.add(new IconPanel(g, getImgSrc(row, col)).printImg(g2d, yPos +
-                        col * cellGap,
+                                col * cellGap,
                         xPos + row * cellGap));
 
             }
@@ -125,21 +163,9 @@ public class App extends JFrame {
 
     }
 
+    @Override
     public void paint(Graphics g) {
         super.paint(g);
         drawRectangles(g);
-    }
-
-    // TODO: JPanel with movelist
-    // TODO: JPanel with playerBox
-    // TODO: Add Resign and offer-draw button
-    public static void main(String[] args) throws Exception {
-
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new App().setVisible(true);
-            }
-        });
     }
 }
