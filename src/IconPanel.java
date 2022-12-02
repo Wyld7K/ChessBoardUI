@@ -28,7 +28,7 @@ public class IconPanel extends JPanel {
     }
 
     public IconPanel printImg(Graphics g, int xPos, int yPos) {
-        g.drawImage(image, xPos, yPos, this);
+        g.drawImage(image, xPos + 5, yPos, 100, 100, this);
         return this;
     }
 
