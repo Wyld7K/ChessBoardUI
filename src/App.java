@@ -62,6 +62,7 @@ public class App extends JFrame {
                     return "Images/bn.png";
                 else if (col == 7)
                     return "Images/br.png";
+
             case 1:
                 return "Images/bp.png";
             case 6:
@@ -99,27 +100,23 @@ public class App extends JFrame {
 
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
-                {
-                    g2d.drawRect(xPos + row * cellGap, yPos + col * cellGap, cellSize, cellSize);
+                g2d.drawRect(xPos + row * cellGap, yPos + col * cellGap, cellSize, cellSize);
 
-                    if (row % 2 == 0) {
-                        if (col % 2 != 0)
-                            // Fill Black
-                            g2d.fillRect(xPos + row * cellGap, yPos + col * cellGap, cellSize, cellSize);
+                if (row % 2 == 0) {
+                    if (col % 2 != 0)
+                        // Fill Black
+                        g2d.fillRect(yPos + col * cellGap, xPos + row * cellGap, cellSize, cellSize);
 
-                    } else {
-                        if (col % 2 == 0)
-                            // Fill Black
-                            g2d.fillRect(xPos + row * cellGap, yPos + col * cellGap, cellSize, cellSize);
-                    }
-                    IconPanel icon = new IconPanel(g, getImgSrc(row, col)).printImg(g2d, yPos + col * cellGap,
-                            xPos + row * cellGap);
-
-                    // Change angle of drawing
-                    // g2d.setColor(new Color(255, 255, 255));
-
+                } else {
+                    if (col % 2 == 0)
+                        // Fill Black
+                        g2d.fillRect(yPos + col * cellGap, xPos + row * cellGap, cellSize, cellSize);
                 }
+                IconPanel icon = new IconPanel(g, getImgSrc(row, col)).printImg(g2d, yPos +
+                        col * cellGap,
+                        xPos + row * cellGap);
             }
+            // DO SOMETHING HERE
         }
 
         // code to draw rectangles goes here...
